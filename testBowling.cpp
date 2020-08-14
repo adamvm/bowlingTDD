@@ -58,3 +58,28 @@ TEST_F(setup, perfectGame)
   ASSERT_EQ(300, game.score());
 }
 
+TEST_F(setup, ten9s)
+{
+  for (int i = 0; i < 10; ++i) {
+    game.roll(9);
+    game.roll(0);
+  }
+  ASSERT_EQ(90, game.score());
+}
+
+TEST_F(setup, allFiveAndExtraOne)
+{
+  rollMany(21, 5, game);
+  ASSERT_EQ(150, game.score());
+}
+
+TEST_F(setup, partialFrame) // 3-|X|4/|5
+{
+  game.roll(3);
+  game.roll(0);
+  game.roll(10);
+  game.roll(4);
+  game.roll(6);
+  game.roll(5);
+  ASSERT_EQ(43, game.score());
+}
