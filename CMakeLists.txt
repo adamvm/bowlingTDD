@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.11)
 project(bowling)
 
+set(CMAKE_CXX_STANDARD 17)
+
 # Get Googletest
 
 include(FetchContent)
@@ -21,5 +23,5 @@ add_definitions(-Wno-unused-variable)
 add_definitions(-Wno-unused-parameter)
 add_definitions(-Wall -Werror -pedantic -Wextra)
 
-add_executable(gtests testBowling.cpp bowling.cpp)
+add_executable(gtests testBowling.cpp Bowling.cpp testFiles.cpp Files.cpp testInterpreter.cpp Interpreter.cpp testPrinter.cpp Printer.cpp)
 target_link_libraries(gtests gtest_main gmock_main)

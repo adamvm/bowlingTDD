@@ -1,7 +1,7 @@
-#include "bowling.hpp"
+#include "Bowling.hpp"
 
-void bowling::roll(int pins) { rolls[currentRoll++] = pins; }
-int bowling::score() {
+void Bowling::roll(int pins) { rolls[currentRoll++] = pins; }
+int Bowling::score() {
   int score = 0;
   int firstInFrame = 0;
   for (int frame = 0; frame < 10; ++frame) {
@@ -18,15 +18,15 @@ int bowling::score() {
   }
   return score;
 }
-bool bowling::isStrike(int firstInFrame) const {
+bool Bowling::isStrike(int firstInFrame) const {
   return rolls[firstInFrame] == 10;
 }
-bool bowling::isSpare(int firstInFrame) const {
+bool Bowling::isSpare(int firstInFrame) const {
   return rolls[firstInFrame] + rolls[firstInFrame + 1] == 10;
 }
-int bowling::nextTwoBallsForStrike(int firstInFrame) const {
+int Bowling::nextTwoBallsForStrike(int firstInFrame) const {
   return rolls[firstInFrame+1] + rolls[firstInFrame + 2];
 }
-int bowling::nextBallForSpare(int firstInFrame) const {
+int Bowling::nextBallForSpare(int firstInFrame) const {
   return rolls[firstInFrame + 2];
 }
