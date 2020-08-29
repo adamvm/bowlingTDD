@@ -30,9 +30,6 @@ TEST_F(FilesTest, ReadFileContent) {
 }
 
 TEST_F(FilesTest, ReadAllFilescontent) {
-  std::map<std::string, std::string> result;
-  for (const auto& file : files.listResultsFiles()) {
-    result.emplace(std::make_pair(file, files.readFile(file)));
-  }
+  std::map<std::string, std::string> result = files.readAllFiles();
   ASSERT_EQ(expectedContent, result);
 }

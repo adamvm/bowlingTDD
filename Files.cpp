@@ -34,3 +34,10 @@ std::string Files::readFile(const std::string &filename) {
 
   return result;
 }
+std::map<std::string, std::string> Files::readAllFiles() {
+  std::map<std::string, std::string> results;
+  for (const auto& file : listResultsFiles()) {
+    results.emplace(std::make_pair(file, readFile(file)));
+  }
+  return results;
+}

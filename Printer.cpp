@@ -3,7 +3,7 @@
 
 #include "Printer.hpp"
 
-std::string Printer::extractLaneName(std::string name) {
+std::string Printer::extractLaneName(const std::string &name) {
   std::string result;
   try {
     std::regex re("([0-9]+)");
@@ -13,7 +13,7 @@ std::string Printer::extractLaneName(std::string name) {
     } else {
       result = std::string("");
     }
-  } catch (std::regex_error& e) {
+  } catch (std::regex_error &e) {
     std::cerr << "Syntax error in the regular expression";
   }
 
@@ -21,29 +21,35 @@ std::string Printer::extractLaneName(std::string name) {
 }
 
 std::stringstream
-Printer::generateSummary(std::map<std::string, std::string> results) {
+Printer::generateSummary(const std::map<std::string, std::string> &results) {
   std::stringstream output;
-  for (const auto& lane : results) {
-    output << "### " << extractLaneName(lane.first) << ": " << interpreter.getGameStatus(lane.second) << " ###" << std::endl;
+  for (const auto &lane : results) {
+    output << "### " << extractLaneName(lane.first) << ": "
+           << interpreter.getGameStatus(lane.second) << " ###" << std::endl;
+    output << summarizeLane(lane.second);
   }
   return output;
 }
 
-std::string Printer::summarizeLane(const std::string& lane) {
+std::string Printer::summarizeLane(const std::string &lane) {
   std::string result;
   auto gamerResult{0};
   auto lines = interpreter.getVector(lane);
-  for (const auto& line : lines) {
-    Bowling game;
+  for (const auto &line : lines) {
+    Bowls game;
     auto record = interpreter.extractRecord(line);
     if (not record.first.empty()) {
       result += record.first + " ";
     }
-    for (const auto&nextRoll : interpreter.processLaneRecordToRolls(record.second))
+    for (const auto &nextRoll :
+         interpreter.processLaneRecordToRolls(record.second))
       game.roll(nextRoll);
 
     gamerResult = game.score();
     result += std::to_string(gamerResult) + '\n';
   }
   return result;
+}
+void Printer::printSummary(std::stringstream &input, std::ostream &output) {
+  output << input.str();
 }

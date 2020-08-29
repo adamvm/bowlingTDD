@@ -23,5 +23,7 @@ add_definitions(-Wno-unused-variable)
 add_definitions(-Wno-unused-parameter)
 add_definitions(-Wall -Werror -pedantic -Wextra)
 
-add_executable(gtests testBowling.cpp Bowling.cpp testFiles.cpp Files.cpp testInterpreter.cpp Interpreter.cpp testPrinter.cpp Printer.cpp)
+add_executable(gtests testBowling.cpp Bowls.cpp testFiles.cpp Files.cpp testInterpreter.cpp Interpreter.cpp testPrinter.cpp Printer.cpp)
 target_link_libraries(gtests gtest_main gmock_main)
+
+add_executable(bowling bowling.cpp Bowls.cpp Files.cpp Interpreter.cpp Printer.cpp)

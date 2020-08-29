@@ -1,4 +1,4 @@
-#include "Bowling.hpp"
+#include "Bowls.hpp"
 #include <gtest/gtest.h>
 
 int main(int argc, char* argv[])
@@ -7,20 +7,20 @@ int main(int argc, char* argv[])
     return RUN_ALL_TESTS();
 }
 
-void rollMany(int n, int pins, Bowling & game) {
+void rollMany(int n, int pins, Bowls & game) {
   for (int i = 0; i < n; ++i) {
     game.roll(pins);
   }
 }
 
-void rollSpare(Bowling & game) {
+void rollSpare(Bowls & game) {
     game.roll(5);
     game.roll(5);
 }
 
 class BowlingTest : public ::testing::Test {
 public:
-  Bowling game;
+  Bowls game;
 };
 
 TEST_F(BowlingTest, gutterGame)

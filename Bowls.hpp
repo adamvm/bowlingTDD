@@ -2,7 +2,7 @@
 
 #include <array>
 
-class Bowling {
+class Bowls {
 private:
   std::array<int, 21> rolls{};
   int currentRoll = 0;
