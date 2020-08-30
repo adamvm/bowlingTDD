@@ -1,4 +1,5 @@
 #include "Files.hpp"
+
 #include <gtest/gtest.h>
 
 class FilesTest : public ::testing::Test {
@@ -11,14 +12,12 @@ public:
                     ":X|22|33"},
       {"lane2.txt", ""},
       {"lane3.txt", "Michael:X|7/|9-|X|-8|8/|-6|X|X|X||81\n"
-                    "Radek:9-|9-|9-|9-|9-|9-|9-|9-|9-|9-||"
-      }
-  };
+                    "Radek:9-|9-|9-|9-|9-|9-|9-|9-|9-|9-||"}};
 };
 
 TEST_F(FilesTest, ListAllFilesInDirectory) {
   std::set<std::string> expectedResult;
-  for (const auto& el : expectedContent)
+  for (const auto &el : expectedContent)
     expectedResult.emplace(el.first);
   ASSERT_EQ(expectedResult, files.listResultsFiles());
 }

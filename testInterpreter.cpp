@@ -1,4 +1,5 @@
 #include "Interpreter.hpp"
+
 #include <gtest/gtest.h>
 
 class InterpreterTest : public ::testing::Test {
@@ -65,8 +66,7 @@ TEST_F(InterpreterTest, statusIsGameInProgress) {
   ASSERT_EQ("game in progress", interpreter.getGameStatus(game));
 }
 
-TEST_F(InterpreterTest, statusForMultilineInputOneInProgressOneDone)
-{
+TEST_F(InterpreterTest, statusForMultilineInputOneInProgressOneDone) {
   auto game = "Michael:X|7/|9-|X|-8|8/|-6|X|X|X||81\n"
               "Radek:9-|9-|9-|9-|9-|9-|9-|9-|9-|";
   ASSERT_EQ("game in progress", interpreter.getGameStatus(game));

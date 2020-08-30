@@ -1,5 +1,6 @@
 #include "Files.hpp"
 #include "Printer.hpp"
+
 #include <fstream>
 #include <iostream>
 #include <map>
@@ -7,7 +8,7 @@
 
 void printHelp();
 void processGame(const std::string &directory, const std::string &file);
- int main(int argc, char **argv) {
+int main(int argc, char **argv) {
   switch (argc) {
   case 2: {
     if (argv[1] == std::string("-h")) {
@@ -16,13 +17,13 @@ void processGame(const std::string &directory, const std::string &file);
       processGame(std::string(argv[1]), "");
     }
     break;
+  }
   case 3: {
     processGame(std::string(argv[1]), std::string(argv[2]));
     break;
   }
   default:
     printHelp();
-  }
   }
 }
 
